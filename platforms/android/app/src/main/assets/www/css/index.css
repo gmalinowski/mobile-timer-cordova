@@ -46,7 +46,7 @@ body {
 /* Portrait layout (default) */
 .app {
   transition: 1s;
-  position: absolute; /* position in the center of the screen */
+  /* position: absolute; position in the center of the screen */
 }
 
 .timer {
@@ -56,21 +56,21 @@ body {
   padding: 10rem;
   text-align: center;
 }
-
 .buttons {
-  width: 5rem;
-  padding-top: 3rem;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  width: 100%;
 }
 
 /* Landscape layout (with min-width) */
 @media screen and (min-aspect-ratio: 1/1) and (min-width: 400px) {
+  .timer {
+    padding: 3rem;
+  }
   .app {
-    background-position: left center;
-    padding: 75px 0px 75px 170px; /* padding-top + padding-bottom + text area = image height */
-    margin: -90px 0px 0px -198px; /* offset vertical: half of image height */
+    /* background-position: left center; */
+    /* padding: 75px 0px 75px 170px; padding-top + padding-bottom + text area = image height */
+    /* margin: -90px 0px 0px -198px; offset vertical: half of image height */
     /* offset horizontal: half of image width and text area width */
   }
 }

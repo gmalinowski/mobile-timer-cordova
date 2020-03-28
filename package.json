@@ -17,7 +17,8 @@
   },
   "cordova": {
     "plugins": {
-      "cordova-plugin-whitelist": {}
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-vibration": {}
     },
     "platforms": [
       "android"
@@ -25,6 +26,7 @@
   },
   "dependencies": {
     "cordova-android": "^8.1.0",
+    "cordova-plugin-vibration": "^3.1.1",
     "material-design-icons": "^3.0.1"
   }
 }

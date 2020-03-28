@@ -17,11 +17,9 @@
  * under the License.
  */
 var app = {
-    // Application Constructor
     initialize: function () {
-        document.addEventListener('deviceready', this.onDeviceReady().bind(this), false);
+        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
     },
-
     timerId: null,
 
     // deviceready Event Handler
@@ -30,10 +28,9 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function () {
         this.setSliders();
-        this.setButtons.bind(this)();
+        this.setButtons();
     },
-
-    setSliders: () => {
+    setSliders: function () {
         document.getElementById('ss').addEventListener('input', (e) => {
             document.getElementById('s').innerText = e.target.value;
         }, false);
@@ -50,7 +47,6 @@ var app = {
             document.getElementById('sh').MaterialSlider.change(100);
         });
     },
-
     setButtons: function () {
         document.getElementById('play').addEventListener('touchend', () => {
             this.toggleTimer();
@@ -59,34 +55,52 @@ var app = {
             this.resetTimer();
         }, false);
     },
-
-    resetTimer: () => {
-        clearInterval(this.timerId);
-        this.timerId = null;
-        document.getElementById('play').children[0].innerText = 'play_arrow';
+    resetTimer: function () {
+        this.clearTimer();
+        this.stopVibrationAlarm();
         document.getElementById('s').innerText = document.getElementById('ss').value;
         document.getElementById('m').innerText = document.getElementById('sm').value;
         document.getElementById('h').innerText = document.getElementById('sh').value;
     },
-
-    toggleTimer: () => {
+    clearTimer: function () {
+        clearInterval(this.timerId);
+        this.timerId = null;
+        document.getElementById('play').children[0].innerText = 'play_arrow';
+    },
+    toggleTimer: function () {
         if (this.timerId) {
-            clearInterval(this.timerId);
-            this.timerId = null;
-            document.getElementById('play').children[0].innerText = 'play_arrow';
+            this.clearTimer();
         } else {
             document.getElementById('play').children[0].innerText = 'pause';
             let s = document.getElementById('s');
             let m = document.getElementById('m');
             let h = document.getElementById('h');
+
             this.timerId = setInterval(() => {
                 let time = +s.innerText + +m.innerText * 60 + +h.innerText * 60 * 60;
-                time = time - 1;
+                time && time--;
                 h.innerText = Math.floor(time / 3600);
                 m.innerText = Math.floor((time % 3600) / 60);
                 s.innerText = ((time % 3600) % 60);
+                if (time <= 0) {
+                    this.clearTimer();
+                    this.vibrationAlarm();
+                    return;
+                }
             }, 1000);
         }
+    },
+    vibrationAlarm: function () {
+        let vibrationPattern = [100, 50, 100, 100];
+        for (let i = 0; i < 10; i++) {
+            vibrationPattern.push(500);
+            vibrationPattern.push(500);
+        }
+        navigator.vibrate(vibrationPattern);
+        alert('Test');
+    },
+    stopVibrationAlarm: function () {
+        navigator.vibrate(0);
     }
 };
 

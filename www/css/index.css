@@ -30,6 +30,7 @@ body {
   -webkit-text-size-adjust: none; /* prevent webkit from resizing text to fit */
   -webkit-user-select: none; /* prevent copy paste, to allow, change 'none' to 'text' */
   background-color: rgb(40, 40, 40);
+  background-color: black;
   color: dodgerblue;
   font-family: system-ui, -apple-system, -apple-system-font, "Segoe UI",
     "Roboto", sans-serif;
@@ -61,7 +62,12 @@ body {
   justify-content: space-evenly;
   width: 100%;
 }
-
+.mdl-slider__background-upper {
+  background-color: rgba(255, 255, 255, 0.26) !important;
+}
+.mdl-slider.is-lowest-value::-webkit-slider-thumb {
+  border-color: rgba(255, 255, 255, 0.26) !important;
+}
 /* Landscape layout (with min-width) */
 @media screen and (min-aspect-ratio: 1/1) and (min-width: 400px) {
   .timer {

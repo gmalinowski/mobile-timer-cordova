@@ -12,9 +12,6 @@
     <feature name="Media">
         <param name="android-package" value="org.apache.cordova.media.AudioHandler" />
     </feature>
-    <feature name="NativeRingtones">
-        <param name="android-package" value="cordova.plugin.nativeRingtones.NativeRingtones" />
-    </feature>
     <name>Timer</name>
     <description>
         A simple timer application.

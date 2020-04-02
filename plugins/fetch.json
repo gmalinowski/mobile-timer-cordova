@@ -30,13 +30,5 @@
     },
     "is_top_level": false,
     "variables": {}
-  },
-  "cordova-plugin-native-ringtones": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-native-ringtones@^0.2.5"
-    },
-    "is_top_level": true,
-    "variables": {}
   }
 }

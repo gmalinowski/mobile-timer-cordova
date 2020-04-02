@@ -23,10 +23,6 @@
             {
               "xml": "<feature name=\"Media\"><param name=\"android-package\" value=\"org.apache.cordova.media.AudioHandler\" /></feature>",
               "count": 1
-            },
-            {
-              "xml": "<feature name=\"NativeRingtones\"><param name=\"android-package\" value=\"cordova.plugin.nativeRingtones.NativeRingtones\" /></feature>",
-              "count": 1
             }
           ]
         }
@@ -42,7 +38,7 @@
           "/*": [
             {
               "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
-              "count": 3
+              "count": 2
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.RECORD_AUDIO\" />",
@@ -54,14 +50,6 @@
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\" />",
-              "count": 1
-            },
-            {
-              "xml": "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\" />",
-              "count": 1
-            },
-            {
-              "xml": "<uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />",
               "count": 1
             }
           ]
@@ -80,9 +68,6 @@
       "PACKAGE_NAME": "io.cordova.hellocordova"
     },
     "cordova-plugin-media": {
-      "PACKAGE_NAME": "io.cordova.hellocordova"
-    },
-    "cordova-plugin-native-ringtones": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
     }
   },
@@ -276,21 +261,12 @@
       "clobbers": [
         "window.Media"
       ]
-    },
-    {
-      "id": "cordova-plugin-native-ringtones.NativeRingtones",
-      "file": "plugins/cordova-plugin-native-ringtones/www/NativeRingtones.js",
-      "pluginId": "cordova-plugin-native-ringtones",
-      "clobbers": [
-        "cordova.plugins.NativeRingtones"
-      ]
     }
   ],
   "plugin_metadata": {
     "cordova-plugin-whitelist": "1.3.4",
     "cordova-plugin-vibration": "3.1.1",
     "cordova-plugin-file": "6.0.2",
-    "cordova-plugin-media": "5.0.3",
-    "cordova-plugin-native-ringtones": "0.2.5"
+    "cordova-plugin-media": "5.0.3"
   }
 }

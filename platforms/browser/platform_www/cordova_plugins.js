@@ -218,22 +218,6 @@ module.exports = [
         "clobbers": [
             "window.Media"
         ]
-    },
-    {
-        "file": "plugins/cordova-plugin-native-ringtones/www/NativeRingtones.js",
-        "id": "cordova-plugin-native-ringtones.NativeRingtones",
-        "pluginId": "cordova-plugin-native-ringtones",
-        "clobbers": [
-            "cordova.plugins.NativeRingtones"
-        ]
-    },
-    {
-        "file": "plugins/cordova-plugin-native-ringtones/www/NativeRingtones.js",
-        "id": "cordova-plugin-native-ringtones.NativeRingtones",
-        "pluginId": "cordova-plugin-native-ringtones",
-        "clobbers": [
-            "cordova.plugins.NativeRingtones"
-        ]
     }
 ];
 module.exports.metadata = 
@@ -242,8 +226,7 @@ module.exports.metadata =
     "cordova-plugin-whitelist": "1.3.4",
     "cordova-plugin-vibration": "3.1.1",
     "cordova-plugin-file": "6.0.2",
-    "cordova-plugin-media": "5.0.3",
-    "cordova-plugin-native-ringtones": "0.2.5"
+    "cordova-plugin-media": "5.0.3"
 }
 // BOTTOM OF METADATA
 });

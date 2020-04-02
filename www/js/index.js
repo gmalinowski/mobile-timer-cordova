@@ -21,6 +21,8 @@ var app = {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
     },
     timerId: null,
+    media: null,
+    visualTimer: null,
 
     // deviceready Event Handler
     //
@@ -33,6 +35,7 @@ var app = {
     setSliders: function () {
         document.getElementById('ss').addEventListener('input', (e) => {
             document.getElementById('s').innerText = e.target.value;
+            this.saveData(e.target.value);
         }, false);
         document.getElementById('sm').addEventListener('input', e => {
             document.getElementById('m').innerText = e.target.value;
@@ -43,8 +46,8 @@ var app = {
         });
         document.getElementById('shh').addEventListener('input', e => {
             let h = document.getElementById('h');
-            h.innerText = +e.target.value + 100;
-            document.getElementById('sh').MaterialSlider.change(100);
+            h.innerText = +e.target.value + 24;
+            document.getElementById('sh').MaterialSlider.change(24);
         });
     },
     setButtons: function () {
@@ -57,7 +60,7 @@ var app = {
     },
     resetTimer: function () {
         this.clearTimer();
-        this.stopVibrationAlarm();
+        this.stopAllAlarms();
         document.getElementById('s').innerText = document.getElementById('ss').value;
         document.getElementById('m').innerText = document.getElementById('sm').value;
         document.getElementById('h').innerText = document.getElementById('sh').value;
@@ -70,6 +73,7 @@ var app = {
     toggleTimer: function () {
         if (this.timerId) {
             this.clearTimer();
+            this.stopAllAlarms();
         } else {
             document.getElementById('play').children[0].innerText = 'pause';
             let s = document.getElementById('s');
@@ -84,11 +88,21 @@ var app = {
                 s.innerText = ((time % 3600) % 60);
                 if (time <= 0) {
                     this.clearTimer();
-                    this.vibrationAlarm();
+                    this.startAllAlarms();
                     return;
                 }
             }, 1000);
         }
+    },
+    startAllAlarms: function () {
+        this.vibrationAlarm();
+        this.soundAlarm();
+        this.visualAlarm();
+    },
+    stopAllAlarms: function () {
+        this.stopVibrationAlarm();
+        this.stopSoundAlarm();
+        this.stopVisiualAlarm();
     },
     vibrationAlarm: function () {
         let vibrationPattern = [100, 50, 100, 100];
@@ -97,11 +111,38 @@ var app = {
             vibrationPattern.push(500);
         }
         navigator.vibrate(vibrationPattern);
-        alert('Test');
     },
     stopVibrationAlarm: function () {
         navigator.vibrate(0);
-    }
+    },
+    soundAlarm: function () {
+        const generateMP3Path = () => {
+            let aPath = window.location.pathname;
+            aPath = aPath.substr(0, aPath.length - 10)
+            return "file://" + aPath + "sounds/alarm.mp3";
+        };
+        if (this.media) this.media.release();
+        this.media = new Media(generateMP3Path(),
+            () => { },
+            err => { alert(err.code) },
+            status => { });
+
+        this.media.play();
+        this.media.setVolume(1);
+    },
+    stopSoundAlarm: function () {
+        this.media.release();
+    },
+    visualAlarm: function () {
+        document.body.classList.add("blinking");
+        clearTimeout(this.visualTimer);
+        this.visualTimer = setTimeout(() => {
+            document.body.classList.remove('blinking');
+        }, 10000);
+    },
+    stopVisiualAlarm: function () {
+        document.body.classList.remove('blinking');
+    },
 };
 
 app.initialize();

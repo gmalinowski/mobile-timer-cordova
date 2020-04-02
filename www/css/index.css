@@ -49,6 +49,23 @@ body {
   /* position: absolute; position in the center of the screen */
 }
 
+.blinking {
+  animation-name: blinker;
+  animation-direction: alternate;
+  animation-duration: 500ms;
+  animation-iteration-count: infinite;
+}
+@keyframes blinker {
+  from {
+    opacity: 0;
+    background-color: black;
+  }
+  to {
+    opacity: 1;
+    background-color: white;
+  }
+}
+
 .timer {
   display: flex;
   justify-content: center;
